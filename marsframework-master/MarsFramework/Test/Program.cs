@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using MarsFramework.Global;
+using MarsFramework.Pages;
+using NUnit.Framework;
 
 namespace MarsFramework
 {
@@ -9,12 +11,7 @@ namespace MarsFramework
         class User : Global.Base
         {
 
-            [Test]
-            public void Test()
-            {
 
-
-            }
 
 
 

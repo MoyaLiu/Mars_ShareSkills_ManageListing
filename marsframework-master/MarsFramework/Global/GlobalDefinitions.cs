@@ -22,10 +22,26 @@ namespace MarsFramework.Global
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
 
         }
+
         public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
             return wait.Until(ExpectedConditions.ElementIsVisible(by));
+        }
+
+        public static IWebElement WaitForElementClickable(IWebDriver driver, IWebElement element, int timeOutinSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        }
+
+        public static void GetOsVersion()
+        {
+            OperatingSystem osInfo = Environment.OSVersion;
+            Console.WriteLine("os is " + osInfo);
+            PlatformID platformID = osInfo.Platform;
+            Console.WriteLine("platformID is " + platformID);
+
         }
         #endregion
 

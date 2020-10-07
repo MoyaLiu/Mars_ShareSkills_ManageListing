@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using MarsFramework.Global;
+using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
 namespace MarsFramework.Pages
@@ -7,7 +9,7 @@ namespace MarsFramework.Pages
     {
         public ShareSkill()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(GlobalDefinitions.driver, this);
         }
 
         //Click on ShareSkill Button
@@ -86,6 +88,10 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         private IWebElement Save { get; set; }
 
+        //Click on WorkSamples icon
+        [FindsBy(How =How.XPath, Using = "//i[@class='huge plus circle icon padding-25']")]
+        private IWebElement WorkSamplesAdd { get; set; }
+
         internal void EnterShareSkill()
         {
             
@@ -93,6 +99,21 @@ namespace MarsFramework.Pages
         }
 
         internal void EditShareSkill()
+        {
+
+        }
+
+        internal void ClickShareSkillButton()
+        {
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ShareSkillButton, 10).Click();
+        }
+
+        internal void ClickWorkSampleButton()
+        {
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, WorkSamplesAdd, 5).Click();
+        }
+
+        internal void UploadFileToWorkSample()
         {
 
         }
