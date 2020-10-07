@@ -35,15 +35,21 @@ namespace MarsFramework.Global
             return wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
-        public static void GetOsVersion()
+        #endregion
+        #region CommonMethods
+
+        public static bool IsWindows()
         {
             OperatingSystem osInfo = Environment.OSVersion;
             Console.WriteLine("os is " + osInfo);
-            PlatformID platformID = osInfo.Platform;
-            Console.WriteLine("platformID is " + platformID);
-
+            return osInfo.ToString().Contains("Windows");
+        }
+        public static string getCodeDirectory()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory;
         }
         #endregion
+
 
 
         #region Excel 

@@ -34,8 +34,7 @@ namespace MarsFramework.Pages
 
         internal void LoginSteps()
         {
-
-            GlobalDefinitions.ExcelLib.PopulateInCollection(MarsResource.ExcelPath, "SignIn");
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
             GlobalDefinitions.driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
             GlobalDefinitions.driver.Manage().Window.Maximize();
 

@@ -24,7 +24,7 @@ namespace MarsFramework.Test
         [Test, Description("Check if the user is able to 'Upload' the 'Work Sample'")]
         public void TC_010_02_Upload_WorkSample()
         {
-            GlobalDefinitions.GetOsVersion();
+
 
         }
 

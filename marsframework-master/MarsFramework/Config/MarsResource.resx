@@ -123,6 +123,11 @@
   </data>
   <data name="ExcelPath" xml:space="preserve">
     <value>../../ExcelData/TestData.xlsx</value>
+    <comment>Excel ath for MAC</comment>
+  </data>
+  <data name="ExcelPathOnWindows" xml:space="preserve">
+    <value>..\..\ExcelData\TestData.xlsx</value>
+    <comment>Excel path for Windows</comment>
   </data>
   <data name="IsLogin" xml:space="preserve">
     <value>true</value>
@@ -131,10 +136,19 @@
   <data name="ReportPath" xml:space="preserve">
     <value>../../TestReports/TestReportSummary.xml</value>
   </data>
+  <data name="ReportPathOnWindows" xml:space="preserve">
+    <value>..\..\TestReports\TestReportSummary.xml</value>
+  </data>
   <data name="ReportXMLPath" xml:space="preserve">
     <value>../../TestReports/XML</value>
   </data>
+  <data name="ReportXMLPathOnWindows" xml:space="preserve">
+    <value>..\..\TestReports\Screenshots</value>
+  </data>
   <data name="ScreenShotPath" xml:space="preserve">
     <value>../../TestReports/Screenshots</value>
+  </data>
+  <data name="ScreenShotPathOnWindows" xml:space="preserve">
+    <value />
   </data>
 </root>
