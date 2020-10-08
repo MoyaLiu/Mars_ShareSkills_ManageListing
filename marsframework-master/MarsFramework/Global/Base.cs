@@ -14,9 +14,9 @@ namespace MarsFramework.Global
         #region To access Path from resource file
 
         public static int Browser = Int32.Parse(MarsResource.Browser);
-        public static string ExcelPath = IsWindows() ? getCodeDirectory() + MarsResource.ExcelPathOnWindows : MarsResource.ExcelPath;
-        public static string ScreenshotPath = IsWindows()? getCodeDirectory() + MarsResource.ScreenShotPathOnWindows : MarsResource.ScreenShotPath;
-        public static string ReportPath = IsWindows()? getCodeDirectory() + MarsResource.ReportPathOnWindows : MarsResource.ReportPath;
+        public static string ExcelPath = IsWindows() ? GetCodeDirectory() + MarsResource.ExcelPathOnWindows : MarsResource.ExcelPath;
+        public static string ScreenshotPath = IsWindows()? GetCodeDirectory() + MarsResource.ScreenShotPathOnWindows : MarsResource.ScreenShotPath;
+        public static string ReportPath = IsWindows()? GetCodeDirectory() + MarsResource.ReportPathOnWindows : MarsResource.ReportPath;
         #endregion
 
         #region reports

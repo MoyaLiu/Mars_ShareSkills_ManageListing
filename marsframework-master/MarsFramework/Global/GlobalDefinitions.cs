@@ -44,7 +44,7 @@ namespace MarsFramework.Global
             Console.WriteLine("os is " + osInfo);
             return osInfo.ToString().Contains("Windows");
         }
-        public static string getCodeDirectory()
+        public static string GetCodeDirectory()
         {
             return AppDomain.CurrentDomain.BaseDirectory;
         }

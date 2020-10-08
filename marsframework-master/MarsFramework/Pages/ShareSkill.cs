@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using MarsFramework.Global;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -89,8 +90,12 @@ namespace MarsFramework.Pages
         private IWebElement Save { get; set; }
 
         //Click on WorkSamples icon
-        [FindsBy(How =How.XPath, Using = "//i[@class='huge plus circle icon padding-25']")]
+        [FindsBy(How = How.XPath, Using = "//i[@class='huge plus circle icon padding-25']")]
         private IWebElement WorkSamplesAdd { get; set; }
+
+        //WorkSamples filename
+        [FindsBy(How = How.XPath, Using = "//div[@class='serviceListing worksampleImage']/a")]
+        private IWebElement WorSamplesFileName { get; set; }
 
         internal void EnterShareSkill()
         {
@@ -108,6 +113,7 @@ namespace MarsFramework.Pages
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ShareSkillButton, 10).Click();
         }
 
+        //Work Sample category
         internal void ClickWorkSampleButton()
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, WorkSamplesAdd, 5).Click();
@@ -115,7 +121,27 @@ namespace MarsFramework.Pages
 
         internal void UploadFileToWorkSample()
         {
+            if (GlobalDefinitions.IsWindows())
+            {
+                string FileUpload = GlobalDefinitions.GetCodeDirectory() + @"..\..\FileUpload.exe";
+                Console.WriteLine("FileUpload = " + FileUpload);
+                System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
+                Info.FileName = FileUpload;
+                try
+                {
+                    System.Diagnostics.Process.Start(Info);
+                }
+                catch (System.ComponentModel.Win32Exception e)
+                {
+                    Console.WriteLine("Can not find the exe", e.Message);
+                }
+                Thread.Sleep(10000);
 
+            }
+        }
+        internal string GetWorkSamplesFileName()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, WorSamplesFileName, 5).Text;
         }
     }
 }

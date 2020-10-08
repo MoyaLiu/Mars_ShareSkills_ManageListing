@@ -97,7 +97,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ../../TestReports/TestReportSummary.xml.
+        ///   Looks up a localized string similar to ../../TestReports/TestReportSummary.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -106,7 +106,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\..\TestReports\TestReportSummary.xml.
+        ///   Looks up a localized string similar to ..\..\TestReports\TestReportSummary.html.
         /// </summary>
         internal static string ReportPathOnWindows {
             get {
