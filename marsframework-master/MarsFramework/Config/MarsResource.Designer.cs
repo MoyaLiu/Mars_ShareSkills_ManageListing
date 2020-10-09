@@ -70,7 +70,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ../../ExcelData/TestData.xlsx.
+        ///   Looks up a localized string similar to /ExcelData/TestData.xlsx.
         /// </summary>
         internal static string ExcelPath {
             get {
@@ -79,7 +79,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\..\ExcelData\TestData.xlsx.
+        ///   Looks up a localized string similar to \ExcelData\TestData.xlsx.
         /// </summary>
         internal static string ExcelPathOnWindows {
             get {
@@ -97,7 +97,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ../../TestReports/TestReportSummary.html.
+        ///   Looks up a localized string similar to /TestReports/TestReportSummary.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -106,7 +106,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\..\TestReports\TestReportSummary.html.
+        ///   Looks up a localized string similar to \TestReports\TestReportSummary.html.
         /// </summary>
         internal static string ReportPathOnWindows {
             get {
@@ -115,7 +115,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ../../TestReports/XML.
+        ///   Looks up a localized string similar to /TestReports/XML.
         /// </summary>
         internal static string ReportXMLPath {
             get {
@@ -124,7 +124,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\..\TestReports\Screenshots.
+        ///   Looks up a localized string similar to \TestReports\XML.
         /// </summary>
         internal static string ReportXMLPathOnWindows {
             get {
@@ -133,7 +133,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ../../TestReports/Screenshots.
+        ///   Looks up a localized string similar to /TestReports/Screenshots.
         /// </summary>
         internal static string ScreenShotPath {
             get {
@@ -142,11 +142,29 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to \TestReports\Screenshots.
         /// </summary>
         internal static string ScreenShotPathOnWindows {
             get {
                 return ResourceManager.GetString("ScreenShotPathOnWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /su.jpg.
+        /// </summary>
+        internal static string WorkSampleFile {
+            get {
+                return ResourceManager.GetString("WorkSampleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \su.jpg.
+        /// </summary>
+        internal static string WorkSampleFileOnWindows {
+            get {
+                return ResourceManager.GetString("WorkSampleFileOnWindows", resourceCulture);
             }
         }
     }

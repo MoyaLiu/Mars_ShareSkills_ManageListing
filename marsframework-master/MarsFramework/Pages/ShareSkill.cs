@@ -98,6 +98,9 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[@class='serviceListing worksampleImage']/a")]
         private IWebElement WorSamplesFileName { get; set; }
 
+        //WorkSamples FileElement
+        [FindsBy(How = How.XPath, Using = "//input[@type='file']")]
+        private IWebElement WorSamplesFileElement { get; set; }
         internal void EnterShareSkill()
         {
             
@@ -122,6 +125,8 @@ namespace MarsFramework.Pages
 
         internal void UploadFileToWorkSample()
         {
+            string FilePath = Base.WorkSampleFile;
+            Console.WriteLine("FilePath = " + FilePath);
             if (GlobalDefinitions.IsWindows())
             {
                 //System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
@@ -135,18 +140,21 @@ namespace MarsFramework.Pages
                 //    Console.WriteLine("Can not find the exe", e.Message);
                 //}
                 //Thread.Sleep(10000);
-                string FilePath = GlobalDefinitions.GetCodeDirectory() + @"..\..\su.jpg";
-                Console.WriteLine("FilePath = " + FilePath);
                 string WindowTitle = "Open";
                 AutoItX.WinActivate(WindowTitle, "");
                 AutoItX.ControlFocus(WindowTitle, "", "Edit1");
                 //AutoItX.ControlSetText(WindowTitle, "", "Edit1", FilePath);
+                AutoItX.Sleep(5000);
                 AutoItX.Send(FilePath);
                 AutoItX.Sleep(5000);
                 AutoItX.ControlClick(WindowTitle, "", "Button1");
                 Thread.Sleep(5000);
-
-
+            }
+            else
+            {
+                GlobalDefinitions.wait(5);
+                WorSamplesFileElement.SendKeys(FilePath);
+                GlobalDefinitions.wait(5);
             }
         }
         internal string GetWorkSamplesFileName()

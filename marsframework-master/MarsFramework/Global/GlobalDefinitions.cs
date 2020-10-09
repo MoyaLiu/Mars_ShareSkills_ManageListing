@@ -37,7 +37,6 @@ namespace MarsFramework.Global
 
         #endregion
         #region CommonMethods
-
         public static bool IsWindows()
         {
             OperatingSystem osInfo = Environment.OSVersion;
@@ -46,7 +45,32 @@ namespace MarsFramework.Global
         }
         public static string GetCodeDirectory()
         {
-            return AppDomain.CurrentDomain.BaseDirectory;
+            string BasePath = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine("BaseDirectory = " + BasePath);
+            return FormatFilePath(BasePath);
+        }
+
+        public static string FormatFilePath(string FilePath)
+        {
+            if (FilePath == null || FilePath.Length == 0)
+                return String.Empty;
+            string CodeDirectoryPath = null;
+            string slash = null;
+            if (IsWindows())
+            {
+                slash = @"\";
+            }
+            else
+            {
+                slash = @"/";
+            }
+            for (int index = 0; index <= 2; index++)
+            {
+                CodeDirectoryPath = FilePath.Substring(0, FilePath.LastIndexOf(slash));
+                FilePath = CodeDirectoryPath;
+            }
+            Console.WriteLine("CodeDirectoryPath = " + CodeDirectoryPath);
+            return CodeDirectoryPath;
         }
         #endregion
 
