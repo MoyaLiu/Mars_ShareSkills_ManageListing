@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using AutoIt;
 using MarsFramework.Global;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -123,19 +124,28 @@ namespace MarsFramework.Pages
         {
             if (GlobalDefinitions.IsWindows())
             {
-                string FileUpload = GlobalDefinitions.GetCodeDirectory() + @"..\..\FileUpload.exe";
-                Console.WriteLine("FileUpload = " + FileUpload);
-                System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
-                Info.FileName = FileUpload;
-                try
-                {
-                    System.Diagnostics.Process.Start(Info);
-                }
-                catch (System.ComponentModel.Win32Exception e)
-                {
-                    Console.WriteLine("Can not find the exe", e.Message);
-                }
-                Thread.Sleep(10000);
+                //System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
+                //Info.FileName = GlobalDefinitions.GetCodeDirectory() + @"..\..\FileUpload.exe";
+                //try
+                //{
+                //    System.Diagnostics.Process.Start(Info);
+                //}
+                //catch (System.ComponentModel.Win32Exception e)
+                //{
+                //    Console.WriteLine("Can not find the exe", e.Message);
+                //}
+                //Thread.Sleep(10000);
+                string FilePath = GlobalDefinitions.GetCodeDirectory() + @"..\..\su.jpg";
+                Console.WriteLine("FilePath = " + FilePath);
+                string WindowTitle = "Open";
+                AutoItX.WinActivate(WindowTitle, "");
+                AutoItX.ControlFocus(WindowTitle, "", "Edit1");
+                //AutoItX.ControlSetText(WindowTitle, "", "Edit1", FilePath);
+                AutoItX.Send(FilePath);
+                AutoItX.Sleep(5000);
+                AutoItX.ControlClick(WindowTitle, "", "Button1");
+                Thread.Sleep(5000);
+
 
             }
         }
