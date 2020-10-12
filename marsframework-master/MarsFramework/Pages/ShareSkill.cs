@@ -12,7 +12,6 @@ namespace MarsFramework.Pages
         public ShareSkill()
         {
             PageFactory.InitElements(GlobalDefinitions.driver, this);
-            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
         }
 
         //Click on ShareSkill Button
@@ -64,7 +63,7 @@ namespace MarsFramework.Pages
 
         //Storing the table of available days
         [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '1']")]
-        private IWebElement Days { get; set; }
+        private IWebElement DaysOfMonday { get; set; }
 
         //Storing the starttime
         [FindsBy(How = How.XPath, Using = "//div[3]/div[2]/input[1]")]
@@ -131,87 +130,126 @@ namespace MarsFramework.Pages
         }
 
         //Title
-        internal void EnterTitle()
+        internal void EnterTitle(string title)
         {
             var eTitle = GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Title, 5);
             eTitle.Click();
             eTitle.Clear();
-            eTitle.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
+            eTitle.SendKeys(title);
         }
 
         //Description
-        internal void EnterDescription()
+        internal void EnterDescription(string description)
         {
             var eDescription = GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Description, 5);
             eDescription.Click();
             eDescription.Clear();
-            eDescription.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
+            eDescription.SendKeys(description);
         }
 
         //Category
-        internal void SelectCategory()
+        internal void SelectCategory(string category)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CategoryDropDown, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CategoryDropDown, 5).SendKeys(category);
         }
         //Sub Category
-        internal void SelectSubCategory()
+        internal void SelectSubCategory(string subCategory)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SubCategoryDropDown, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SubCategoryDropDown, 5).SendKeys(subCategory);
         }
 
         //TAGS
+        internal void EnterTag(string tag)
+        {
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Tags, 5).SendKeys(tag);
+        }
+
         internal void AddTag()
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Tags, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Tags, 5).SendKeys(Keys.Enter);
         }
 
         //One-off Service
-        internal void SelectServiceTypeOneoffService()
+        internal void SelectServiceType(string serviceType)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ServiceTypeOptionsOneOffService, 5).Click();
+            if (serviceType.Equals("Hourly basis service"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ServiceTypeOptionsHourlyBasisService, 5).Click();
+            }
+            else if(serviceType.Equals("One-off service"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ServiceTypeOptionsOneOffService, 5).Click();
+            }
         }
 
-        // Online
-        internal void SelectLocationTypeOnSite()
+        // LocationType
+        internal void SelectLocationType(string locationType)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocationTypeOptionOnline, 5).Click();
+            if (locationType.Equals("On-site"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocationTypeOptionOnSite, 5).Click();
+            }
+            else if (locationType.Equals("Online"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocationTypeOptionOnline, 5).Click();
+            }
         }
 
         //Available days
-        internal void SelectStartDate()
+        internal void SelectStartDate(string startDate)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartDateDropDown, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartDateDropDown, 5).SendKeys(startDate);
         }
 
-        internal void SelectEndDate()
+        internal void SelectEndDate(string endDate)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndDateDropDown, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndDateDropDown, 5).SendKeys(endDate);
         }
 
-        internal void TickDay()
+        internal void TickDay(string days)
         {
             //GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Days, 5).Click();
             GlobalDefinitions.wait(2);
-            Days.Click();
+            if (days.Equals("Mon"))
+            {
+                DaysOfMonday.Click();
+            }
         }
 
-        internal void SelectStartTime()
+        internal void SelectStartTime(string startTime)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(startTime);
         }
-        internal void SelectEndTime()
+        internal void SelectEndTime(string endTime)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndTimeOnMon, 5).SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndTimeOnMon, 5).SendKeys(endTime);
         }
 
-        //Skill Trade -> Credit
-        internal void SelectSkillTradeCredit()
+        //Skill Trade
+        internal void SelectSkillTrade(string skillTrade)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillTradeOptionCredit, 5).Click();
+            if (skillTrade.Equals("Skill-exchange"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillTradeOptionSkillExchange, 5).Click();
+            }
+            else if (skillTrade.Equals("Credit"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillTradeOptionCredit, 5).Click();
+            }
+
         }
-        internal void EnterCreditAmount()
+        internal void EnterTagNameSkillExchange(string tag)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CreditAmount, 5).SendKeys("5");
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillExchange, 5).SendKeys(tag);
+        }
+
+        internal void AddTagNameSkillExchange()
+        {
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillExchange, 5).SendKeys(Keys.Enter);
+        }
+        internal void EnterCreditAmount(string creditAmount)
+        {
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CreditAmount, 5).SendKeys(creditAmount);
         }
 
         //Work Sample category
@@ -260,9 +298,16 @@ namespace MarsFramework.Pages
         }
 
         //Active
-        internal void SelectActiveHidden()
+        internal void SelectActive(string active)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ActiveOptionHidden, 5).Click();
+            if (active.Equals("Active"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ActiveOptionActive, 5).Click();
+            }
+            else if (active.Equals("Hidden"))
+            {
+                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ActiveOptionHidden, 5).Click();
+            }
         }
 
         internal void ClickSave()
