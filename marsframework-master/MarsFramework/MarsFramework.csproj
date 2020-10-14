@@ -137,6 +137,8 @@
     <Compile Include="Test\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\ShareSkillTests.cs" />
+    <Compile Include="Pages\Common.cs" />
+    <Compile Include="Test\ManageListingsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Config\MarsResource.resx">

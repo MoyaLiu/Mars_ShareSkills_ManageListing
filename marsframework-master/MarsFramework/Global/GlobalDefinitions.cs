@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,11 @@ namespace MarsFramework.Global
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
             return wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
+        public static Boolean WaitForElementToBeSelected(IWebDriver driver, IWebElement element, int timeOutinSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            return wait.Until(ExpectedConditions.ElementToBeSelected(element));
+        }
 
         #endregion
         #region CommonMethods
@@ -54,8 +60,8 @@ namespace MarsFramework.Global
         {
             if (FilePath == null || FilePath.Length == 0)
                 return String.Empty;
-            string CodeDirectoryPath = null;
-            string slash = null;
+            string CodeDirectoryPath = "";
+            string slash;
             if (IsWindows())
             {
                 slash = @"\";
@@ -71,6 +77,24 @@ namespace MarsFramework.Global
             }
             Console.WriteLine("CodeDirectoryPath = " + CodeDirectoryPath);
             return CodeDirectoryPath;
+        }
+
+        public static string FormatDateFromExcel(string date)
+        {
+            string subDate = date.Substring(0,10);
+            Console.WriteLine("subDate = " + subDate);
+            DateTime dateTime = DateTime.Parse(subDate);
+            Console.WriteLine("dateTime = " + dateTime.ToString("yyyy-MM-dd"));
+            return dateTime.ToString("yyyy-MM-dd");
+        }
+
+        public static string FormatTimeFromExcel(string time)
+        {
+            string subTime = time.Substring(10);
+            Console.WriteLine("subTime = " + subTime);
+            DateTime dateTime = DateTime.Parse(subTime);
+            Console.WriteLine("dateTime = " + dateTime.ToString("HH:ss"));
+            return dateTime.ToString("HH:ss");
         }
         #endregion
 

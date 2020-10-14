@@ -3,6 +3,7 @@ using System.Threading;
 using AutoIt;
 using MarsFramework.Global;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 
 namespace MarsFramework.Pages
@@ -38,19 +39,23 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//body/div/div/div[@id='service-listing-section']/div[contains(@class,'ui container')]/div[contains(@class,'listing')]/form[contains(@class,'ui form')]/div[contains(@class,'tooltip-target ui grid')]/div[contains(@class,'twelve wide column')]/div[contains(@class,'')]/div[contains(@class,'ReactTags__tags')]/div[contains(@class,'ReactTags__selected')]/div[contains(@class,'ReactTags__tagInput')]/input[1]")]
         private IWebElement Tags { get; set; }
 
+        //Added Tag name
+        [FindsBy(How = How.XPath, Using = "//div[@class = 'form-wrapper field  ']//span[@class = 'ReactTags__tag']")]
+        private IWebElement TagName { get; set; }
+
         //Select the Service type -> Hourly basis service
         [FindsBy(How = How.XPath, Using = "//form/div[5]/div[@class='twelve wide column']/div/div[@class='field']")]
         private IWebElement ServiceTypeOptionsHourlyBasisService { get; set; }
         //Select the Service type -> One-off Service
-        [FindsBy(How = How.XPath, Using = "//form/div[5]/div[@class='twelve wide column']/div/div[@class='field'][2]")]
+        [FindsBy(How = How.XPath, Using = "//form/div[5]/div[@class='twelve wide column']/div/div[@class='field'][2]/div/input")]
         private IWebElement ServiceTypeOptionsOneOffService { get; set; }
 
         //Select the Location Type -> On-site
-        [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field']")]
+        [FindsBy(How = How.XPath, Using = "//form/div[5]/div[@class='twelve wide column']/div/div[@class='field']/div/input")]
         private IWebElement LocationTypeOptionOnSite { get; set; }
 
         //Select the Location Type -> Online
-        [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field'][2]")]
+        [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field'][2]/div/input")]
         private IWebElement LocationTypeOptionOnline { get; set; }
 
         //Click on Start Date dropdown
@@ -62,12 +67,32 @@ namespace MarsFramework.Pages
         private IWebElement EndDateDropDown { get; set; }
 
         //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '0']")]
+        private IWebElement DaysOfSunday { get; set; }
+
+        //Storing the table of available days
         [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '1']")]
         private IWebElement DaysOfMonday { get; set; }
 
-        //Storing the starttime
-        [FindsBy(How = How.XPath, Using = "//div[3]/div[2]/input[1]")]
-        private IWebElement StartTimeOnMon { get; set; }
+        //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '2']")]
+        private IWebElement DaysOfTuesday { get; set; }
+
+        //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '3']")]
+        private IWebElement DaysOfWednesday { get; set; }
+
+        //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '4']")]
+        private IWebElement DaysOfThursday { get; set; }
+
+        //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '5']")]
+        private IWebElement DaysOfFriday { get; set; }
+
+        //Storing the table of available days
+        [FindsBy(How = How.XPath, Using = "//input[@tabindex='0'][@index = '6']")]
+        private IWebElement DaysOfSaturday { get; set; }
 
         //Click on StartTime dropdown
         [FindsBy(How = How.XPath, Using = "//div[3]/div[2]/input[1]")]
@@ -75,30 +100,77 @@ namespace MarsFramework.Pages
 
         //Click on EndTime dropdown
         [FindsBy(How = How.XPath, Using = "//div[3]/div[3]/input[1]")]
+        private IWebElement EndTimeDropDown { get; set; }
+
+        //Storing the starttime
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '0']")]
+        private IWebElement StartTimeOnSun { get; set; }
+
+        //Storing the Endtime
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '0']")]
+        private IWebElement EndTimeOnSun { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '1']")]
+        private IWebElement StartTimeOnMon { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '1']")]
         private IWebElement EndTimeOnMon { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '2']")]
+        private IWebElement StartTimeOnTue { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '2']")]
+        private IWebElement EndTimeOnTue { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '3']")]
+        private IWebElement StartTimeOnWed { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '3']")]
+        private IWebElement EndTimeOnWed { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '4']")]
+        private IWebElement StartTimeOnThu { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '4']")]
+        private IWebElement EndTimeOnThu { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '5']")]
+        private IWebElement StartTimeOnFri { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '5']")]
+        private IWebElement EndTimeOnFri { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='StartTime'][@index = '6']")]
+        private IWebElement StartTimeOnSat { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name ='EndTime'][@index = '6']")]
+        private IWebElement EndTimeOnSat { get; set; }
+
         //Click on Skill Trade option -> Skill-exchange
-        [FindsBy(How = How.XPath, Using = "//form/div[8]/div[@class='twelve wide column']/div/div[@class = 'field']")]
+        [FindsBy(How = How.XPath, Using = "//form/div[8]/div[@class='twelve wide column']/div/div[@class = 'field']/div/input")]
         private IWebElement SkillTradeOptionSkillExchange { get; set; }
 
         //Click on Skill Trade option -> Credit
-        [FindsBy(How = How.XPath, Using = "//form/div[8]/div[@class='twelve wide column']/div/div[@class = 'field'][2]")]
+        [FindsBy(How = How.XPath, Using = "//form/div[8]/div[@class='twelve wide column']/div/div[@class = 'field'][2]/div/input")]
         private IWebElement SkillTradeOptionCredit { get; set; }
 
         //Enter Skill Exchange
         [FindsBy(How = How.XPath, Using = "//div[@class='form-wrapper']//input[@placeholder='Add new tag']")]
         private IWebElement SkillExchange { get; set; }
+        //Add Skill Exchange
+        [FindsBy(How = How.XPath, Using = "//div[@class='form-wrapper']//span[@class = 'ReactTags__tag']")]
+        private IWebElement SkillExchangeTagName { get; set; }
 
         //Enter the amount for Credit
         [FindsBy(How = How.XPath, Using = "//input[@placeholder='Amount']")]
         private IWebElement CreditAmount { get; set; }
 
         //Click on Active -> Active
-        [FindsBy(How = How.XPath, Using = "//form/div[10]/div[@class='twelve wide column']/div/div[@class = 'field']")]
+        [FindsBy(How = How.XPath, Using = "//form/div[10]/div[@class='twelve wide column']/div/div[@class = 'field']/div/input")]
         private IWebElement ActiveOptionActive { get; set; }
 
         //Click on Active -> Hidden
-        [FindsBy(How = How.XPath, Using = "//form/div[10]/div[@class='twelve wide column']/div/div[@class = 'field'][2]")]
+        [FindsBy(How = How.XPath, Using = "//form/div[10]/div[@class='twelve wide column']/div/div[@class = 'field'][2]/div/input")]
         private IWebElement ActiveOptionHidden { get; set; }
 
         //Click on Save button
@@ -116,6 +188,8 @@ namespace MarsFramework.Pages
         //WorkSamples FileElement
         [FindsBy(How = How.XPath, Using = "//input[@type='file']")]
         private IWebElement WorSamplesFileElement { get; set; }
+
+        #region functionalities on page ShareSkill
         internal void EnterShareSkill()
         {
         }
@@ -150,12 +224,17 @@ namespace MarsFramework.Pages
         //Category
         internal void SelectCategory(string category)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CategoryDropDown, 5).SendKeys(category);
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, CategoryDropDown, 5);
+            SelectElement selectElement = new SelectElement(CategoryDropDown);
+            selectElement.SelectByText(category);
+
         }
         //Sub Category
         internal void SelectSubCategory(string subCategory)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SubCategoryDropDown, 5).SendKeys(subCategory);
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SubCategoryDropDown, 5);
+            SelectElement selectElement = new SelectElement(SubCategoryDropDown);
+            selectElement.SelectByText(subCategory);
         }
 
         //TAGS
@@ -174,11 +253,11 @@ namespace MarsFramework.Pages
         {
             if (serviceType.Equals("Hourly basis service"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ServiceTypeOptionsHourlyBasisService, 5).Click();
+                ServiceTypeOptionsHourlyBasisService.Click();
             }
             else if(serviceType.Equals("One-off service"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ServiceTypeOptionsOneOffService, 5).Click();
+                ServiceTypeOptionsOneOffService.Click();
             }
         }
 
@@ -187,11 +266,11 @@ namespace MarsFramework.Pages
         {
             if (locationType.Equals("On-site"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocationTypeOptionOnSite, 5).Click();
+                LocationTypeOptionOnSite.Click();
             }
             else if (locationType.Equals("Online"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocationTypeOptionOnline, 5).Click();
+                LocationTypeOptionOnline.Click();
             }
         }
 
@@ -199,30 +278,55 @@ namespace MarsFramework.Pages
         internal void SelectStartDate(string startDate)
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartDateDropDown, 5).SendKeys(startDate);
+            StartDateDropDown.SendKeys(Keys.Enter);
         }
 
         internal void SelectEndDate(string endDate)
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndDateDropDown, 5).SendKeys(endDate);
+            StartDateDropDown.SendKeys(Keys.Enter);
         }
 
         internal void TickDay(string days)
         {
-            //GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Days, 5).Click();
             GlobalDefinitions.wait(2);
-            if (days.Equals("Mon"))
+            switch(days)
             {
-                DaysOfMonday.Click();
+                case "Sun":
+                    DaysOfSunday.Click();
+                    break;
+                case "Mon":
+                    DaysOfMonday.Click();
+                    break;
+                case "Tue":
+                    DaysOfTuesday.Click();
+                    break;
+                case "Wed":
+                    DaysOfWednesday.Click();
+                    break;
+                case "Thu":
+                    DaysOfThursday.Click();
+                    break;
+                case "Fri":
+                    DaysOfFriday.Click();
+                    break;
+                case "Sat":
+                    DaysOfSaturday.Click();
+                    break;
             }
         }
 
         internal void SelectStartTime(string startTime)
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(startTime);
+            DateTime dateTime = DateTime.Parse(startTime);
+            Console.WriteLine("dateTime = " + dateTime.ToString("HH:ss tt").Replace(@" p.m.",@"PM"));
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(dateTime.ToString("HH:ss tt").Replace(@" p.m.", @"PM"));
+            StartDateDropDown.SendKeys(Keys.Enter);
         }
         internal void SelectEndTime(string endTime)
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndTimeOnMon, 5).SendKeys(endTime);
+            StartDateDropDown.SendKeys(Keys.Enter);
         }
 
         //Skill Trade
@@ -230,11 +334,11 @@ namespace MarsFramework.Pages
         {
             if (skillTrade.Equals("Skill-exchange"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillTradeOptionSkillExchange, 5).Click();
+                SkillTradeOptionSkillExchange.Click();
             }
             else if (skillTrade.Equals("Credit"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillTradeOptionCredit, 5).Click();
+                SkillTradeOptionCredit.Click();
             }
 
         }
@@ -292,21 +396,17 @@ namespace MarsFramework.Pages
                 GlobalDefinitions.wait(5);
             }
         }
-        internal string GetWorkSamplesFileName()
-        {
-            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, WorSamplesFileName, 5).Text;
-        }
 
         //Active
         internal void SelectActive(string active)
         {
             if (active.Equals("Active"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ActiveOptionActive, 5).Click();
+                ActiveOptionActive.Click();
             }
             else if (active.Equals("Hidden"))
             {
-                GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, ActiveOptionHidden, 5).Click();
+                ActiveOptionHidden.Click();
             }
         }
 
@@ -314,5 +414,91 @@ namespace MarsFramework.Pages
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Save, 5).Click();
         }
+        #endregion
+
+        #region Assertion
+        internal string GetTitle()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, Title, 5).GetAttribute("value");
+        }
+        internal string GetDescriptionText()
+        {
+            return Common.GetTextOfElement(Description);
+        }
+        internal string GetCategoryText()
+        {
+            SelectElement selectElement = new SelectElement(CategoryDropDown);
+            return selectElement.SelectedOption.Text;
+        }
+        internal string GetSubCategoryText()
+        {
+            SelectElement selectElement = new SelectElement(SubCategoryDropDown);
+            return selectElement.SelectedOption.Text;
+        }
+        internal string GetTagsText()
+        {
+            return Common.GetTextOfElement(Tags);
+        }
+        internal string GetAddedTagNameText()
+        {
+            return Common.GetTextOfElement(TagName);
+        }
+        internal Boolean IsSelectedOnOneOffService()
+        {
+            return Common.IsSelectedOfElement(ServiceTypeOptionsOneOffService);
+        }
+        internal Boolean IsSelectedOnSite()
+        {
+            return Common.IsSelectedOfElement(LocationTypeOptionOnSite);
+        }
+        internal string GetStartDateText()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartDateDropDown, 5).GetAttribute("value");
+        }
+        internal string GetEndDateText()
+        {
+            return Common.GetTextOfElement(EndDateDropDown);
+        }
+        internal Boolean IsSelectedDay()
+        {
+            return Common.IsSelectedOfElement(DaysOfMonday);//Just for Monday
+        }
+        internal string GetStartTimeOnMondayText()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).GetAttribute("value"); ;//Just for Monday
+        }
+        internal string GetEndTimeOnMondayText()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, EndTimeOnMon, 5).GetAttribute("value");//Just for Monday
+        }
+        internal Boolean IsSelectedSkillExchange()
+        {
+            return Common.IsSelectedOfElement(SkillTradeOptionSkillExchange);
+        }
+        internal string GetSkillExchangeTagFieldText()
+        {
+            return GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, SkillExchange, 5).GetAttribute("value");
+        }
+        internal string GetSkillExchangeTagNameText()
+        {
+            return Common.GetTextOfElement(SkillExchangeTagName);
+        }
+        internal Boolean IsSelectedCredit()
+        {
+            return Common.IsSelectedOfElement(SkillTradeOptionCredit);
+        }
+        internal string GetCreditAmountText()
+        {
+            return Common.GetTextOfElement(CreditAmount);
+        }
+        internal string GetWorkSamplesFileName()
+        {
+            return Common.GetTextOfElement(WorSamplesFileName);
+        }
+        internal Boolean IsSelectedHidden()
+        {
+            return Common.IsSelectedOfElement(ActiveOptionHidden);
+        }
+        #endregion
     }
 }
