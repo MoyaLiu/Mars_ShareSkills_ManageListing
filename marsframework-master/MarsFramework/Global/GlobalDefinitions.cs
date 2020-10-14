@@ -35,6 +35,11 @@ namespace MarsFramework.Global
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
             return wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
+        public static IWebElement WaitForElementClickable(IWebDriver driver, By by, int timeOutinSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(by));
+        }
         public static Boolean WaitForElementToBeSelected(IWebDriver driver, IWebElement element, int timeOutinSeconds)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));

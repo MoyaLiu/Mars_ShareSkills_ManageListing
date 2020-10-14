@@ -17,9 +17,9 @@ namespace MarsFramework.Test
         [SetUp, Test, Description("Check if the user is able to click on 'Share Skill' button in Profile page")]
         public void TC_001_01_Click_ShareSkill_Button()
         {
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
             shareSkill = new ShareSkill();
             shareSkill.ClickShareSkillButton();
-            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
 
             Assert.AreEqual("http://localhost:5000/Home/ServiceListing", GlobalDefinitions.driver.Url);
         }
