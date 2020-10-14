@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using MarsFramework.Config;
 using MarsFramework.Global;
 using MarsFramework.Pages;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace MarsFramework.Test
 {
     [TestFixture]
     [Category("ShareSkill")]
-    [Parallelizable]
+    [Order(0)]
     class ShareSkillTests : Base
     {
         public ShareSkill shareSkill;
@@ -21,7 +22,7 @@ namespace MarsFramework.Test
             shareSkill = new ShareSkill();
             shareSkill.ClickShareSkillButton();
 
-            Assert.AreEqual("http://localhost:5000/Home/ServiceListing", GlobalDefinitions.driver.Url);
+            Assert.AreEqual(MarsResource.ServiceListingUrl, GlobalDefinitions.driver.Url);
         }
 
         [Test, Description("Check if the user is able to 'Enter' the 'Title'")]
@@ -219,6 +220,7 @@ namespace MarsFramework.Test
             shareSkill.SelectSkillTrade(GlobalDefinitions.ExcelLib.ReadData(RowNumber, "SkillTrade"));
             shareSkill.EnterTagNameSkillExchange(GlobalDefinitions.ExcelLib.ReadData(RowNumber, "Skill-Exchange"));
             shareSkill.AddTagNameSkillExchange();
+            shareSkill.ClickWorkSampleButton();
             shareSkill.UploadFileToWorkSample();
             shareSkill.SelectActive(GlobalDefinitions.ExcelLib.ReadData(RowNumber, "Active"));
             shareSkill.ClickSave();

@@ -217,9 +217,9 @@ namespace MarsFramework.Global
 
                 var screenShot = ((ITakesScreenshot)driver).GetScreenshot();
                 var fileName = new StringBuilder(folderLocation);
-
+                fileName.Append(@"\");
                 fileName.Append(ScreenShotFileName);
-                fileName.Append(DateTime.Now.ToString("_dd-mm-yyyy_mss"));
+                fileName.Append(DateTime.Now.ToString("_yyyy-MM-dd-HH-mm_mss"));
                 //fileName.Append(DateTime.Now.ToString("dd-mm-yyyym_ss"));
                 fileName.Append(".jpeg");
                 screenShot.SaveAsFile(fileName.ToString(), ScreenshotImageFormat.Jpeg);

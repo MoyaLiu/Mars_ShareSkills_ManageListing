@@ -19,7 +19,7 @@ namespace MarsFramework.Pages
         public static string getAlertDialogText()
         {
             By AlertDialogBy = By.XPath("//div[@class='ns-box-inner']");
-            var text = GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, AlertDialogBy, 5).Text;
+            var text = GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, AlertDialogBy, 8).Text;
             Console.WriteLine("text = " + text);
             return text;
         }

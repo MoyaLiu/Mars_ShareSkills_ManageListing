@@ -318,9 +318,10 @@ namespace MarsFramework.Pages
 
         internal void SelectStartTime(string startTime)
         {
-            DateTime dateTime = DateTime.Parse(startTime);
-            Console.WriteLine("dateTime = " + dateTime.ToString("HH:ss tt").Replace(@" p.m.",@"PM"));
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(dateTime.ToString("HH:ss tt").Replace(@" p.m.", @"PM"));
+            DateTime subStartTime = DateTime.Parse(startTime);
+            string time = subStartTime.ToString("hhsstt").Replace(@" p.m.", @"PM");
+            Console.WriteLine("time = " + time);
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, StartTimeOnMon, 5).SendKeys(time);
             StartDateDropDown.SendKeys(Keys.Enter);
         }
         internal void SelectEndTime(string endTime)

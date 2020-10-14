@@ -1,4 +1,5 @@
 ﻿using System;
+using MarsFramework.Config;
 using MarsFramework.Global;
 using MarsFramework.Pages;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace MarsFramework.Test
 
     [TestFixture]
     [Category("Manage Listings")]
-    [Parallelizable]
+    [Order(1)]
     class ManageListingsTests : Base
     {
         public ManageListings manageListings;
@@ -22,7 +23,7 @@ namespace MarsFramework.Test
             manageListings = new ManageListings();
             manageListings.ClickManageListingButton();
 
-            Assert.AreEqual("http://localhost:5000/Home/ListingManagement", GlobalDefinitions.driver.Url);
+            Assert.AreEqual(MarsResource.ListingManagementUrl, GlobalDefinitions.driver.Url);
         }
 
         [Test, Description("Check if the user is able to 'View' the 'Listings'")]
@@ -37,7 +38,7 @@ namespace MarsFramework.Test
         {
             manageListings.ViewSkillItem(Index);
 
-            Assert.IsTrue(GlobalDefinitions.driver.Url.Contains("http://localhost:5000/Home/ServiceDetail"));
+            Assert.IsTrue(GlobalDefinitions.driver.Url.Contains(MarsResource.ServiceDetailUrl));
 
         }
         [Test, Description("Check if the user is able to 'Edit' the 'Skill Item'")]
@@ -45,7 +46,7 @@ namespace MarsFramework.Test
         {
             manageListings.EditSkillItem(Index);
 
-            Assert.IsTrue(GlobalDefinitions.driver.Url.Contains("http://localhost:5000/Home/ServiceListing"));
+            Assert.IsTrue(GlobalDefinitions.driver.Url.Contains(MarsResource.ServiceListingUrl));
         }
         [Test, Description("Check if the user is able to 'Delete' the 'Skill Item'")]
         public void TC_005_01_Delete_SkillItem()

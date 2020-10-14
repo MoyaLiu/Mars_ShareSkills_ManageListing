@@ -31,6 +31,10 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[@class='actions']")]
         private IWebElement clickActionsButton { get; set; }
 
+        //Click Yes
+        [FindsBy(How = How.XPath, Using = "//button[@class='ui icon positive right labeled button']")]
+        private IWebElement yesButton { get; set; }
+
         private By LocatorTitle(int index)
         {
             string xpath = "//tbody/tr[" + index.ToString() + "]/td[3]";
@@ -66,7 +70,7 @@ namespace MarsFramework.Pages
 
         internal void ClickManageListingButton()
         {
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, manageListingsLink, 5).Click();
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, manageListingsLink, 8).Click();
         }
 
         internal string GetTheTitleText(int index)
@@ -84,8 +88,7 @@ namespace MarsFramework.Pages
         internal void DeleteSkillItem(int index)
         {
             GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, LocatorDelete(index), 5).Click();
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ui tiny modal transition visible active']"), 5);
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, By.XPath("//button[@class='ui icon positive right labeled button']"), 5).Click();
+            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, yesButton, 5).Click();
         }
     }
 }
